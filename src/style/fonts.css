@@ -1,0 +1,23 @@
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: url("./../fonts/opensans-regular-webfont.eot");
+  src: local("Open Sans"), local("OpenSans"), url("./../fonts/opensans-regular-webfont.eot?#iefix") format("embedded-opentype"), url("./../fonts/opensans-regular-webfont.woff2") format("woff2"), url("./../fonts/open-san-regular-webfont.woff") format("woff"), url("./../fonts/opensans-regular-webfont.ttf") format("truetype"), url("./../fonts/opensans-regular-webfont.svg#OpenSans") format("svg");
+  /* Legacy iOS */ }
+
+@font-face {
+  font-family: 'Open Sans Bold';
+  font-style: normal;
+  font-weight: 700;
+  src: url("./../fonts/opensans-bold-webfont.eot");
+  src: local("Open Sans Bold"), local("OpenSansBold"), url("./../fonts/opensans-bold-webfont.eot?#iefix") format("embedded-opentype"), url("./../fonts/opensans-bold-webfont.woff2") format("woff2"), url("./../fonts/opensans-bold-webfont.woff") format("woff"), url("./../fonts/opensans-bold-webfont.ttf") format("truetype"), url("./../fonts/opensans-bold-webfont.svg#OpenSansBold") format("svg");
+  /* Legacy iOS */ }
+
+@font-face {
+  font-family: 'Gotham Bold';
+  font-style: normal;
+  font-weight: 700;
+  src: url("./../fonts/gotham-bold-webfont.eot");
+  src: local("Gotham Bold"), local("GothamBold"), url("./../fonts/gotham-bold-webfont.eot?#iefix") format("embedded-opentype"), url("./../fonts/gotham-bold-webfont.woff2") format("woff2"), url("./../fonts/gotham-bold-webfont.woff") format("woff"), url("./../fonts/gotham-bold-webfont.ttf") format("truetype"), url("./../fonts/gotham-bold-webfont.svg#OpenSansBold") format("svg");
+  /* Legacy iOS */ }
