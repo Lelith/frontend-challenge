@@ -3,7 +3,7 @@
   font-style: normal;
   font-weight: 400;
   src: url("./../fonts/opensans-regular-webfont.eot");
-  src: local("Open Sans"), local("OpenSans"), url("./../fonts/opensans-regular-webfont.eot?#iefix") format("embedded-opentype"), url("./../fonts/opensans-regular-webfont.woff2") format("woff2"), url("./../fonts/open-san-regular-webfont.woff") format("woff"), url("./../fonts/opensans-regular-webfont.ttf") format("truetype"), url("./../fonts/opensans-regular-webfont.svg#OpenSans") format("svg");
+  src: local("Open Sans"), local("OpenSans"), url("./../fonts/opensans-regular-webfont.eot?#iefix") format("embedded-opentype"), url("./../fonts/opensans-regular-webfont.woff2") format("woff2"), url("./../fonts/opensans-regular-webfont.woff") format("woff"), url("./../fonts/opensans-regular-webfont.ttf") format("truetype"), url("./../fonts/opensans-regular-webfont.svg#OpenSans") format("svg");
   /* Legacy iOS */ }
 
 @font-face {
