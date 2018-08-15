@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import DatePicker from '../DatePicker/DatePicker';
-import { Button } from '../FormElements';
-import IconLeft from '../../img/arrow-left.svg';
+import { Button, Switch } from '../FormElements';
+import IconLeft from '../../img/icon_arrow_left.svg';
 
 class ConfirmationForm extends Component {
   constructor(props) {
@@ -87,7 +87,7 @@ class ConfirmationForm extends Component {
       <form className="confirmationForm">
         <fieldset>
           Would you like to receive a call?
-          <input type="checkbox" onChange={this.handleCheckbox} />
+          <Switch onChange={this.handleCheckbox} />
 
           {getCall && (
             <DatePicker chooseTime={this.chooseTime} />
