@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
+import PhoneInput from 'react-phone-number-input';
+
 import DatePicker from '../DatePicker/DatePicker';
 import { Button, Switch } from '../FormElements';
 import IconLeft from '../../img/icon_arrow_left.svg';
+import 'react-phone-number-input/style.css'
 
 class ConfirmationForm extends Component {
   constructor(props) {
@@ -20,6 +23,8 @@ class ConfirmationForm extends Component {
     this.handleCheckbox = this.handleCheckbox.bind(this);
     this.sendForm = this.sendForm.bind(this);
     this.chooseTime = this.chooseTime.bind(this);
+    this.readFormValue = this.readFormValue.bind(this);
+    this.readPhone = this.readPhone.bind(this);
   }
 
   validateForm() {
@@ -57,6 +62,24 @@ class ConfirmationForm extends Component {
     this.validateForm();
   }
 
+  readFormValue(event) {
+    const { target } = event;
+    const { value, name } = target;
+    this.setState({
+      [name]: value,
+    });
+    this.validateForm();
+  }
+
+  // the phone input component only returns the number instead of the whole event
+
+  readPhone(number) {
+    this.setState({
+      phone: number,
+    });
+    this.validateForm();
+  }
+
   sendForm() {
     // send all form fields via post and then redirect to success page
     const { isValid } = this.state;
@@ -78,7 +101,13 @@ class ConfirmationForm extends Component {
   }
 
   render() {
-    const { getCall, isValid, redirect } = this.state;
+    const {
+      getCall,
+      isValid,
+      redirect,
+      phone,
+    } = this.state;
+
     if (redirect) {
       return <Redirect to="/success" />;
     }
@@ -90,7 +119,16 @@ class ConfirmationForm extends Component {
           <Switch onChange={this.handleCheckbox} />
 
           {getCall && (
+          <fieldset>
+            <PhoneInput
+              country="DE"
+              name="phone"
+              placeholder="Enter phone number"
+              value={phone}
+              onChange={this.readPhone}
+            />
             <DatePicker chooseTime={this.chooseTime} />
+          </fieldset>
           )}
           <Button
             as="a"
