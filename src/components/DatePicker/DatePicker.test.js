@@ -7,7 +7,8 @@ import DatePicker from './DatePicker';
 
 describe('DatePicker component', () => {
   it('Should show the <Appointment /> component when it has fetched the Data', () => {
-    const wrapper = shallow(<DatePicker />);
+    const chooseTime = () => {};
+    const wrapper = shallow(<DatePicker chooseTime={chooseTime} />);
     const appointments = [
       {
         date: '2018-08-14',

@@ -9,11 +9,30 @@ class ConfirmationForm extends Component {
     this.state = {
       isValid: true,
       getCall: false,
+      date: null,
+      slot: null,
+      phone: null,
       redirect: false,
     };
 
     this.handleCheckbox = this.handleCheckbox.bind(this);
     this.sendForm = this.sendForm.bind(this);
+    this.chooseTime = this.chooseTime.bind(this);
+  }
+
+  validateForm() {
+    const {
+      getCall,
+      date,
+      slot,
+      phone,
+    } = this.state;
+
+    if (getCall) {
+      if (phone != null && date != null && slot != null) {
+        this.setState({ isValid: true });
+      }
+    }
   }
 
   handleCheckbox() {
@@ -22,6 +41,18 @@ class ConfirmationForm extends Component {
       getCall: !getCall,
       isValid: !isValid,
     });
+  }
+
+  chooseTime(event) {
+    const { target } = event;
+    const value = target.value.split(',');
+
+    this.setState({
+      date: value[0],
+      slot: value[1],
+    });
+
+    this.validateForm();
   }
 
   sendForm() {
@@ -56,7 +87,7 @@ class ConfirmationForm extends Component {
           Would you like to receive a call? <input type="checkbox" onChange={this.handleCheckbox} />
 
           {getCall && (
-            <DatePicker />
+            <DatePicker chooseTime={this.chooseTime} />
           )}
           <button className="button primary" onClick={this.sendForm} type="button" disabled={!isValid}>Confirm</button>
         </fieldset>

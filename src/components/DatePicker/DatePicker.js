@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Appointment from './Appointment';
 
 class DatePicker extends Component {
@@ -9,7 +10,10 @@ class DatePicker extends Component {
       appointments: null,
       isLoading: true,
       error: null,
+      activeDate: -1,
     };
+
+    this.toggleActiveDate = this.toggleActiveDate.bind(this);
   }
 
   componentDidMount() {
@@ -30,9 +34,22 @@ class DatePicker extends Component {
       .catch(error => this.setState({ error, isLoading: false }));
   }
 
-  render() {
-    const { error, isLoading, appointments } = this.state;
+  toggleActiveDate(event) {
+    const appointmentIndex = event.target.value;
+    this.setState({
+      activeDate: appointmentIndex,
+    });
+  }
 
+  render() {
+    const {
+      error,
+      isLoading,
+      appointments,
+    } = this.state;
+
+    const { chooseTime } = this.props;
+    const { activeDate } = this.state;
 
     if (error) {
       return (<div>{error.message}</div>);
@@ -43,15 +60,30 @@ class DatePicker extends Component {
     }
 
     return (
+
       <div className="datePicker">
         {
-          appointments.map(appointment => (
-            <Appointment key={appointment.date} appointment={appointment} />
-          ))
+          appointments.map((appointment, index) => {
+            const active = parseInt(index, 10) === parseInt(activeDate, 10);
+            return (
+              <Appointment
+                key={appointment.date}
+                toggleActiveDate={this.toggleActiveDate}
+                chooseTime={chooseTime}
+                appointment={appointment}
+                appointmentIndex={index}
+                active={active}
+              />
+            );
+          })
         }
       </div>
     );
   }
 }
+
+DatePicker.propTypes = {
+  chooseTime: PropTypes.func.isRequired,
+};
 
 export default DatePicker;
