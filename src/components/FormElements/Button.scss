@@ -21,6 +21,11 @@
     transition: background-color 0.1s;
   }
 
+  &:disabled {
+    cursor: not-allowed;
+    background-color: lighten(map-get($colors, brand), 15%);
+  }
+
   &--icon {
     background-color: map-get($colors, light);
     border: 1px solid map-get($colors, brand);

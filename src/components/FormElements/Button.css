@@ -16,6 +16,9 @@
   .button:hover {
     background-color: #195066;
     transition: background-color 0.1s; }
+  .button:disabled {
+    cursor: not-allowed;
+    background-color: #46aad2; }
   .button--icon {
     background-color: #fff;
     border: 1px solid #2880a3;
