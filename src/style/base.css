@@ -22,5 +22,12 @@
   src: local("Gotham Bold"), local("GothamBold"), url("./../fonts/gotham-bold-webfont.eot?#iefix") format("embedded-opentype"), url("./../fonts/gotham-bold-webfont.woff2") format("woff2"), url("./../fonts/gotham-bold-webfont.woff") format("woff"), url("./../fonts/gotham-bold-webfont.ttf") format("truetype"), url("./../fonts/gotham-bold-webfont.svg#OpenSansBold") format("svg");
   /* Legacy iOS */ }
 
+* {
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box; }
+
 body {
-  font-family: 'Open Sans'; }
+  font-family: 'Open Sans';
+  color: #333;
+  font-size: 14px; }
