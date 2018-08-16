@@ -33,5 +33,5 @@
       border-radius: 50%;
       position: absolute;
       display: block; }
-    .switch__slider__icon {
+    .switch__slider__icon.isvg {
       display: none; }

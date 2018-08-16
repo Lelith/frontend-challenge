@@ -113,11 +113,12 @@ class ConfirmationForm extends Component {
     }
 
     return (
-      <form className="confirmationForm">
+      <form className="confirmationForm form">
         <fieldset>
-          Would you like to receive a call?
-          <Switch onChange={this.handleCheckbox} />
-
+          <div className="form__actions">
+            <span className="form__label">Would you like to shedule a call with your Stylist before they pack your box?</span>
+            <Switch onChange={this.handleCheckbox} />
+          </div>
           {getCall && (
           <fieldset>
             <PhoneInput
@@ -126,22 +127,25 @@ class ConfirmationForm extends Component {
               placeholder="Enter phone number"
               value={phone}
               onChange={this.readPhone}
+              className="form__element"
             />
             <DatePicker chooseTime={this.chooseTime} />
           </fieldset>
           )}
-          <Button
-            as="a"
-            href="/"
-            kind="icon"
-            title="back"
-            icon={IconLeft}
-          />
-          <Button
-            onClick={this.sendForm}
-            disabled={!isValid}
-            label="Confirm"
-          />
+          <div className="form__actions">
+            <Button
+              as="a"
+              href="/"
+              kind="icon"
+              title="back"
+              icon={IconLeft}
+            />
+            <Button
+              onClick={this.sendForm}
+              disabled={!isValid}
+              label="Confirm"
+            />
+          </div>
         </fieldset>
       </form>
     );
