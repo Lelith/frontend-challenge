@@ -23,7 +23,7 @@ class ConfirmationForm extends Component {
     this.handleCheckbox = this.handleCheckbox.bind(this);
     this.sendForm = this.sendForm.bind(this);
     this.chooseTime = this.chooseTime.bind(this);
-    this.readFormValue = this.readFormValue.bind(this);
+    this.writeFormValue = this.writeFormValue.bind(this);
     this.readPhone = this.readPhone.bind(this);
   }
 
@@ -38,46 +38,43 @@ class ConfirmationForm extends Component {
     if (getCall) {
       if (phone != null && date != null && slot != null) {
         this.setState({ isValid: true });
+      } else {
+        this.setState({ isValid: false });
       }
+    } else {
+      this.setState({
+        phone: null,
+        slot: null,
+        date: null,
+        isValid: true,
+      });
     }
   }
 
   handleCheckbox() {
-    const { getCall, isValid } = this.state;
-    this.setState({
-      getCall: !getCall,
-      isValid: !isValid,
-    });
-  }
-
-  chooseTime(event) {
-    const { target } = event;
-    const value = target.value.split(',');
-
-    this.setState({
-      date: value[0],
-      slot: value[1],
-    });
-
-    this.validateForm();
-  }
-
-  readFormValue(event) {
-    const { target } = event;
-    const { value, name } = target;
-    this.setState({
-      [name]: value,
-    });
-    this.validateForm();
+    const { getCall } = this.state;
+    this.writeFormValue('getCall', !getCall);
   }
 
   // the phone input component only returns the number instead of the whole event
-
   readPhone(number) {
+    this.writeFormValue('phone', number);
+  }
+
+  // timeslot and date are two different fields
+  chooseTime(event) {
+    const { target } = event;
+    const value = target.value.split(',');
+    this.writeFormValue('date', value[0]);
+    this.writeFormValue('slot', value[1]);
+  }
+
+  writeFormValue(name, value) {
     this.setState({
-      phone: number,
+      [name]: value,
+    }, () => {
+      this.validateForm();
     });
-    this.validateForm();
   }
 
   sendForm() {

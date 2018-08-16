@@ -28,7 +28,7 @@ const Appointment = (props) => {
           {appointment.slots.map(time => (
             <li key={time.start}>
               <label>
-                <input type="radio" name="time" value={`${appointment.date}, ${time.start}`} onChange={chooseTime} />
+                <input type="radio" name="time" value={`${appointment.date},${time.start}`} onChange={chooseTime} />
                 {time.start} to {time.end}
               </label>
             </li>
