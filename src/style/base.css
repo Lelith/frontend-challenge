@@ -32,6 +32,19 @@ body {
   color: #333;
   font-size: 14px; }
 
+a,
+a:hover,
+a:link,
+a:visited {
+  color: #333;
+  font-size: 14px;
+  text-decoration: none; }
+  a:hover,
+  a:hover:hover,
+  a:link:hover,
+  a:visited:hover {
+    text-decoration: underline; }
+
 .pageContent {
   max-width: 600px;
   margin: 0 auto;

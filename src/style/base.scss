@@ -13,10 +13,23 @@ body {
   font-size: map-get($fontsizes, default);
 }
 
+a,
+a:hover,
+a:link,
+a:visited {
+  color: map-get($colors, text);
+  font-size: map-get($fontsizes, default);
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
 .pageContent {
   max-width: 600px;
   margin: 0 auto;
-  padding: 20px;   
+  padding: 20px;
 }
 
 .isvg {
