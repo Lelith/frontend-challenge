@@ -18,13 +18,15 @@ class ConfirmationForm extends Component {
       slot: null,
       phone: null,
       redirect: false,
+      orderConfirmationComment:'',
     };
 
     this.handleCheckbox = this.handleCheckbox.bind(this);
     this.sendForm = this.sendForm.bind(this);
+    this.writeFormValue = this.writeFormValue.bind(this);
     this.chooseTime = this.chooseTime.bind(this);
-    this.readFormValue = this.readFormValue.bind(this);
     this.readPhone = this.readPhone.bind(this);
+    this.readField = this.readField.bind(this);
   }
 
   validateForm() {
@@ -38,65 +40,82 @@ class ConfirmationForm extends Component {
     if (getCall) {
       if (phone != null && date != null && slot != null) {
         this.setState({ isValid: true });
+      } else {
+        this.setState({ isValid: false });
       }
+    } else {
+      this.setState({
+        phone: null,
+        slot: null,
+        date: null,
+        isValid: true,
+      });
     }
   }
 
   handleCheckbox() {
-    const { getCall, isValid } = this.state;
-    this.setState({
-      getCall: !getCall,
-      isValid: !isValid,
-    });
-  }
-
-  chooseTime(event) {
-    const { target } = event;
-    const value = target.value.split(',');
-
-    this.setState({
-      date: value[0],
-      slot: value[1],
-    });
-
-    this.validateForm();
-  }
-
-  readFormValue(event) {
-    const { target } = event;
-    const { value, name } = target;
-    this.setState({
-      [name]: value,
-    });
-    this.validateForm();
+    const { getCall } = this.state;
+    this.writeFormValue('getCall', !getCall);
   }
 
   // the phone input component only returns the number instead of the whole event
-
   readPhone(number) {
+    this.writeFormValue('phone', number);
+  }
+
+  // timeslot and date are two different fields
+  chooseTime(event) {
+    const { target } = event;
+    const value = target.value.split(',');
+    this.writeFormValue('date', value[0]);
+    this.writeFormValue('slot', value[1]);
+  }
+
+  readField(event) {
+    const { target } = event;
+    this.writeFormValue(target.name, target.value);
+  }
+
+  writeFormValue(name, value) {
     this.setState({
-      phone: number,
+      [name]: value,
+    }, () => {
+      this.validateForm();
     });
-    this.validateForm();
   }
 
   sendForm() {
     // send all form fields via post and then redirect to success page
-    const { isValid } = this.state;
+    const {
+      isValid,
+      phone,
+      date,
+      slot,
+      orderConfirmationComment,
+    } = this.state;
+
     if (isValid) {
-      /* fetch('https://nrg-frontend-task-api.herokuapp.com/appointments', {
+      const opts = {
+        date,
+        slot,
+        orderConfirmationComment,
+        phone,
+      };
+
+      fetch('https://nrg-frontend-task-api.herokuapp.com/appointments', {
         method: 'POST',
         headers: {
           Accept: 'application/json',
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-          firstParam: 'yourValue',
-          secondParam: 'yourOtherValue',
-        }),
-      }); */
-      console.log('sending form');
-      this.setState({ redirect: true });
+        body: JSON.stringify(opts),
+      })
+        .then(response => (
+          response.json()
+        ))
+        .then(() => (
+          this.setState({ redirect: true })
+        ));
     }
   }
 
@@ -114,39 +133,43 @@ class ConfirmationForm extends Component {
 
     return (
       <form className="confirmationForm form">
-        <fieldset>
-          <div className="form__actions">
-            <span className="form__label">Would you like to shedule a call with your Stylist before they pack your box?</span>
-            <Switch onChange={this.handleCheckbox} />
-          </div>
-          {getCall && (
-          <fieldset>
-            <PhoneInput
-              country="DE"
-              name="phone"
-              placeholder="Enter phone number"
-              value={phone}
-              onChange={this.readPhone}
-              className="form__element"
-            />
-            <DatePicker chooseTime={this.chooseTime} />
-          </fieldset>
-          )}
-          <div className="form__actions">
-            <Button
-              as="a"
-              href="/"
-              kind="icon"
-              title="back"
-              icon={IconLeft}
-            />
-            <Button
-              onClick={this.sendForm}
-              disabled={!isValid}
-              label="Confirm"
-            />
-          </div>
-        </fieldset>
+        <div className="form__actions">
+          <span className="form__label">Would you like to shedule a call with your Stylist before they pack your box?</span>
+          <Switch onChange={this.handleCheckbox} />
+        </div>
+        {getCall && (
+        <div className="form__element">
+          <PhoneInput
+            country="DE"
+            name="phone"
+            placeholder="Enter phone number"
+            value={phone}
+            onChange={this.readPhone}
+            className="form__element"
+          />
+          <DatePicker chooseTime={this.chooseTime} />
+        </div>
+        )}
+        <div className="form__element form__element--highlight">
+          <label>
+            <span className="form__text">Is there anything else you would like to share with your Stylist?</span>
+            <textarea name="orderConfirmationComment" onChange={this.readField} />
+          </label>
+        </div>
+        <div className="form__actions">
+          <Button
+            as="a"
+            href="/"
+            kind="icon"
+            title="back"
+            icon={IconLeft}
+          />
+          <Button
+            onClick={this.sendForm}
+            disabled={!isValid}
+            label="Confirm"
+          />
+        </div>
       </form>
     );
   }

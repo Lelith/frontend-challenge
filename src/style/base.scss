@@ -16,6 +16,7 @@ body {
 .pageContent {
   max-width: 600px;
   margin: 0 auto;
+  padding: 20px;   
 }
 
 .isvg {
@@ -27,40 +28,5 @@ body {
 }
 
 .react-phone-number-input__icon {
-  border: 0 ;
-}
-
-.form {
-  &__label {
-    font-size: map-get($fontsizes, medium);
-    font-family: 'Gotham Bold';
-    line-height: 1.4em;
-    margin-right: 10px;
-  }
-
-  &__element {
-    display: flex;
-    flex-direction: column;
-    padding-bottom: 10px;
-    margin-bottom: 20px;
-  }
-
-  &__actions {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    padding-bottom: 10px;
-    margin-bottom: 20px;
-    .button {
-      margin: 0 5px;
-    }
-  }
-
-  &__input {
-    display: block;
-    width: 100%;
-    border: 0;
-    border-radius: 2px;
-    padding: 5px 15px;
-  }
+  border: 0;
 }
