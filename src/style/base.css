@@ -44,6 +44,16 @@ a:visited {
   a:link:hover,
   a:visited:hover {
     text-decoration: underline; }
+  a.button,
+  a:hover.button,
+  a:link.button,
+  a:visited.button {
+    color: #fff; }
+    a.button:hover,
+    a:hover.button:hover,
+    a:link.button:hover,
+    a:visited.button:hover {
+      text-decoration: none; }
 
 .pageContent {
   max-width: 600px;

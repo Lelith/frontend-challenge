@@ -24,7 +24,16 @@ a:visited {
   &:hover {
     text-decoration: underline;
   }
+
+  &.button {
+    color: map-get($colors, light);
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
 }
+
 
 .pageContent {
   max-width: 600px;
