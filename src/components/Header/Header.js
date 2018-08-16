@@ -1,8 +1,14 @@
 import React from 'react';
+import SVG from 'react-inlinesvg';
+import Logo from '../../img/logo.svg';
+
+import './Header.css';
 
 const Header = () => (
   <header className="header">
-    <h1>Outfittery</h1>
+    <a href="/" title="home">
+      <SVG src={Logo} alt="outfittery" />
+    </a>
   </header>
 );
 
