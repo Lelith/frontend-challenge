@@ -1,0 +1,13 @@
+@import '../../style/variables.scss';
+
+.header {
+  height: 42px;
+  background-color: map-get($colors, bgDark);
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+
+  .isvg {
+    justify-content: left;
+  }
+}
