@@ -64,7 +64,7 @@ class DatePicker extends Component {
     return (
 
       <div className="datePicker form__element  ">
-        <h3>Please choose a date and time</h3>
+        <h3 className="form__label">Please choose a date and time</h3>
         {
           appointments.map((appointment, index) => {
             const active = parseInt(index, 10) === parseInt(activeDate, 10);

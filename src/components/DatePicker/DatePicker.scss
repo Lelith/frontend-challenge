@@ -25,6 +25,8 @@
       display: flex;
       flex-direction: row;
       justify-content: left;
+      font-size: map-get($fontsizes, medium);
+      border-bottom: solid 1px map-get($colors, bgLight);
       &:hover {
         background-color: map-get($colors, bgLight);
       }
@@ -33,6 +35,9 @@
 
   &--active {
     border: solid 1px map-get($colors, brand);
+    .appointment__date {
+      background-color: map-get($colors, bgLight)
+    }
   }
 
   &--disabled {

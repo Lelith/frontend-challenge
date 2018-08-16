@@ -1,0 +1,36 @@
+.homepage {
+  position: relative;
+  &__img {
+    max-width: 100%;
+  }
+
+  &__content {
+    text-align: center;
+    padding: 20px;
+  }
+
+  &__title {
+    font-family: 'Gotham Bold';
+    font-size: 30px;
+    text-transform: uppercase;
+  }
+
+  &__subtitle {
+    font-family: 'Gotham Bold';
+    font-size: 20px;
+  }
+
+  &__button {
+    margin: 20px auto;
+    max-width: 300px;
+    display: block;
+  }
+
+  @media only screen and (min-width: 768px){
+    .homepage__content {
+      position: absolute;
+      right: 7%;
+      top: 25%;
+    }
+  }
+}

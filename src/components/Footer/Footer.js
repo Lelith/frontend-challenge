@@ -7,9 +7,9 @@ require('./Footer.css');
 const Footer = () => (
   <footer className="footer">
     <nav className="footer__nav">
-      <a href="#">Terms</a>
-      <a href="#">Imprint</a>
-      <a href="#">Privacy</a>
+      <a href="/">Terms</a>
+      <a href="/">Imprint</a>
+      <a href="/">Privacy</a>
     </nav>
     <SVG src={Logo} />
   </footer>
