@@ -18,7 +18,7 @@ class ConfirmationForm extends Component {
       slot: null,
       phone: null,
       redirect: false,
-      orderConfirmationComment:'',
+      orderConfirmationComment: '',
     };
 
     this.handleCheckbox = this.handleCheckbox.bind(this);
@@ -138,15 +138,18 @@ class ConfirmationForm extends Component {
           <Switch onChange={this.handleCheckbox} />
         </div>
         {getCall && (
-        <div className="form__element">
-          <PhoneInput
-            country="DE"
-            name="phone"
-            placeholder="Enter phone number"
-            value={phone}
-            onChange={this.readPhone}
-            className="form__element"
-          />
+        <div>
+          <div className="form__element form__element--highlight">
+            <span className="form__text">Schedule a call with your Stylist at a time to suit you, to talk about your order, style and preferencfes</span>
+            <h3>Contact telephone number</h3>
+            <PhoneInput
+              country="DE"
+              name="phone"
+              placeholder="Enter phone number"
+              value={phone}
+              onChange={this.readPhone}
+            />
+          </div>
           <DatePicker chooseTime={this.chooseTime} />
         </div>
         )}

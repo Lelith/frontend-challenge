@@ -14,21 +14,23 @@ const Appointment = (props) => {
 
   const appointmentClasses = classNames(
     'appointment',
+    { 'appointment--active': active },
     { 'appointment--disabled': availableSlots === 0 },
   );
+  const formattedDate = new Date(appointment.date).toLocaleDateString('de-De');
 
   return (
     <div className={appointmentClasses}>
-      <label>
-        <input type="radio" name="date" onChange={availableSlots > 0 ? toggleActiveDate : undefined} value={appointmentIndex} />
-        {appointment.date}
+      <label className="appointment__date">
+        <input hidden type="radio" name="date" onChange={availableSlots > 0 ? toggleActiveDate : undefined} value={appointmentIndex} />
+        {formattedDate}
       </label>
       {active && availableSlots > 0 && (
-        <ul className="availableSlots">
+        <ul className="appointment__availableSlots">
           {appointment.slots.map(time => (
-            <li key={time.start}>
+            <li className="appointment__time" key={time.start}>
               <label>
-                <input type="radio" name="time" value={`${appointment.date},${time.start}`} onChange={chooseTime} />
+                <input className="styledRadio" type="radio" name="time" value={`${appointment.date},${time.start}`} onChange={chooseTime} />
                 {time.start} to {time.end}
               </label>
             </li>

@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Appointment from './Appointment';
 
+require('./DatePicker.css');
+
 class DatePicker extends Component {
   constructor(props) {
     super(props);
@@ -61,7 +63,8 @@ class DatePicker extends Component {
 
     return (
 
-      <div className="datePicker">
+      <div className="datePicker form__element  ">
+        <h3>Please choose a date and time</h3>
         {
           appointments.map((appointment, index) => {
             const active = parseInt(index, 10) === parseInt(activeDate, 10);
