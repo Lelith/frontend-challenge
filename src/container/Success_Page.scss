@@ -1,0 +1,47 @@
+@import '../style/variables.scss';
+
+.success {
+  &__message {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+
+  &__text {
+    font-family: 'Gotham Bold';
+    font-size: map-get($fontsizes, medium);
+    text-align: center;
+    margin-top: 15px;
+  }
+
+  &__details {
+    border: solid 15px map-get($colors, bgGrey);
+    padding: 10px;
+    width: 300px;
+    margin: 0 auto;
+
+    &__header {
+      padding-left: 35px;
+    }
+
+    &__entry {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+
+    &__text {
+      flex-grow: 1;
+    }
+
+    .isvg.success__details__icon {
+      margin-top: 20px;
+      flex-grow: 0;
+      width: 25px;
+      margin-right: 10px;
+    }
+  }
+}

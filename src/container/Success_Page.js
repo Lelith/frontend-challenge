@@ -1,4 +1,11 @@
 import React, { Component } from 'react';
+import SVG from 'react-inlinesvg';
+import Stylist from '../img/Stylist.png';
+import IconWallet from '../img/icon_wallet.svg';
+import IconMoney from '../img/icon_money.svg';
+import IconHouse from '../img/icon_house.svg';
+
+require('./Success_Page.css');
 
 class SuccessPage extends Component {
   constructor(props) {
@@ -38,11 +45,8 @@ class SuccessPage extends Component {
       return (<div className="pageContent">{error.message}</div>);
     }
 
-    if (isLoading) {
-      return (<div className="pageContent">loading ...</div>);
-    }
 
-    if (appointmentData != null) {
+    if (!isLoading && appointmentData != null) {
       const {
         stylist,
         date,
@@ -63,29 +67,34 @@ class SuccessPage extends Component {
 
       return (
         <div className="pageContent">
-          <h1>Success</h1>
-          <div className="success__text">
-            {SuccessText}
+          <div className="success__message">
+            <img className="success__image" src={Stylist} alt="your stylist" />
+            <span className="success__text">
+              {SuccessText}
+            </span>
           </div>
           <div className="success__details">
-            <h3>Your order details</h3>
+            <span className="success__details__header">Your order details</span>
             <div className="success__details__entry">
+              <SVG className="success__details__icon" src={IconWallet} />
               <div className="success__details__text">
-                <h4>Payment Method: Mastercard</h4>
+                <h4 className="success__details__headline">Payment Method: Mastercard</h4>
                 <p>  **** **** *** 45</p>
               </div>
             </div>
             <div className="success__details__entry">
+              <SVG className="success__details__icon" src={IconHouse} />
               <div className="success__details__text">
-                <h4>Delivery Address</h4>
+                <h4 className="success__details__headline">Delivery Address</h4>
                   Max Mustermann <br />
                   Schönste Straße 3 <br />
                   00000 Berlin
               </div>
             </div>
             <div className="success__details__entry">
+              <SVG className="success__details__icon" src={IconMoney} />
               <div className="success__details__text">
-                <h4>Billing Address</h4>
+                <h4 className="success__details__headline">Billing Address</h4>
                 <p>
                   Max Mustermann <br />
                   Schönste Straße 3 <br />
@@ -97,6 +106,8 @@ class SuccessPage extends Component {
         </div>
       );
     }
+
+    return (<div className="pageContent">loading ...</div>);
   }
 }
 
