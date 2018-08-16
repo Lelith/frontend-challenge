@@ -5,7 +5,10 @@ import PhoneInput from 'react-phone-number-input';
 import DatePicker from '../DatePicker/DatePicker';
 import { Button, Switch } from '../FormElements';
 import IconLeft from '../../img/icon_arrow_left.svg';
+import Stylist from '../../img/Stylist.png';
 import 'react-phone-number-input/style.css';
+
+require('./ConfirmationForm.css');
 
 class ConfirmationForm extends Component {
   constructor(props) {
@@ -134,6 +137,7 @@ class ConfirmationForm extends Component {
     return (
       <form className="confirmationForm form">
         <div className="form__actions">
+          <img className="form__img" src={Stylist} alt="your stylist" />
           <span className="form__label">Would you like to shedule a call with your Stylist before they pack your box?</span>
           <Switch onChange={this.handleCheckbox} />
         </div>
@@ -141,7 +145,7 @@ class ConfirmationForm extends Component {
         <div>
           <div className="form__element form__element--highlight">
             <span className="form__text">Schedule a call with your Stylist at a time to suit you, to talk about your order, style and preferencfes</span>
-            <h3>Contact telephone number</h3>
+            <h3 className="form__label">Contact telephone number</h3>
             <PhoneInput
               country="DE"
               name="phone"
