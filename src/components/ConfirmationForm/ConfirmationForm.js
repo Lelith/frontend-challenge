@@ -18,6 +18,7 @@ class ConfirmationForm extends Component {
       slot: null,
       phone: null,
       redirect: false,
+      orderConfirmationComment:'',
     };
 
     this.handleCheckbox = this.handleCheckbox.bind(this);
@@ -85,21 +86,37 @@ class ConfirmationForm extends Component {
 
   sendForm() {
     // send all form fields via post and then redirect to success page
-    const { isValid } = this.state;
+    const {
+      isValid,
+      phone,
+      date,
+      slot,
+      orderConfirmationComment,
+    } = this.state;
+
     if (isValid) {
-      /* fetch('https://nrg-frontend-task-api.herokuapp.com/appointments', {
+      console.log('sending form');
+      const opts = {
+        date: { date },
+        slot: { slot },
+        orderConfirmationComment: { orderConfirmationComment },
+        phone: { phone },
+      };
+
+      fetch('https://nrg-frontend-task-api.herokuapp.com/appointments', {
         method: 'POST',
         headers: {
           Accept: 'application/json',
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-          firstParam: 'yourValue',
-          secondParam: 'yourOtherValue',
-        }),
-      }); */
-      console.log('sending form');
-      this.setState({ redirect: true });
+        body: JSON.stringfy(opts),
+      })
+        .then(response => (
+          response.json()
+        ))
+        .then(() => (
+          this.setState({ redirect: true })
+        ));
     }
   }
 
