@@ -95,12 +95,11 @@ class ConfirmationForm extends Component {
     } = this.state;
 
     if (isValid) {
-      console.log('sending form');
       const opts = {
-        date: { date },
-        slot: { slot },
-        orderConfirmationComment: { orderConfirmationComment },
-        phone: { phone },
+        date,
+        slot,
+        orderConfirmationComment,
+        phone,
       };
 
       fetch('https://nrg-frontend-task-api.herokuapp.com/appointments', {
@@ -109,7 +108,7 @@ class ConfirmationForm extends Component {
           Accept: 'application/json',
           'Content-Type': 'application/json',
         },
-        body: JSON.stringfy(opts),
+        body: JSON.stringify(opts),
       })
         .then(response => (
           response.json()
