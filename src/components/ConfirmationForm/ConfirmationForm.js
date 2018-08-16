@@ -5,7 +5,7 @@ import PhoneInput from 'react-phone-number-input';
 import DatePicker from '../DatePicker/DatePicker';
 import { Button, Switch } from '../FormElements';
 import IconLeft from '../../img/icon_arrow_left.svg';
-import 'react-phone-number-input/style.css'
+import 'react-phone-number-input/style.css';
 
 class ConfirmationForm extends Component {
   constructor(props) {

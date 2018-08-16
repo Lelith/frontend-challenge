@@ -2,6 +2,7 @@ import '../../../jest-setup';
 
 import React from 'react';
 import { shallow } from 'enzyme';
+import { assert } from 'chai';
 import ConfirmationForm from './ConfirmationForm';
 
 describe('ConfirmationForm component', () => {
@@ -15,13 +16,15 @@ describe('ConfirmationForm component', () => {
     const wrapper = shallow(<ConfirmationForm />);
 
     // set checkbox to true
-    wrapper.find('input[type="checkbox"]').simulate('change', { target: { checked: true } });
+    wrapper.find('Switch[type="checkbox"]').simulate('change', { target: { checked: true } });
 
     // state should change
     expect(wrapper.state('isValid')).toEqual(false);
     expect(wrapper.state('getCall')).toEqual(true);
 
     // DatePicker is rendered
-    expect(wrapper.html()).toMatch(/.datePicker/);
+    const DatePicker = wrapper.find('DatePicker');
+
+    assert.equal(DatePicker.length, 1);
   });
 });
