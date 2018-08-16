@@ -1,0 +1,37 @@
+.switch {
+  display: flex;
+  flex-direction: column;
+  position: relative; }
+  .switch.switch--checked .switch__slider {
+    background-color: #2880a3; }
+    .switch.switch--checked .switch__slider::before {
+      transform: translateX(26px); }
+    .switch.switch--checked .switch__slider .switch__slider__icon {
+      display: block;
+      margin-left: 8px;
+      margin-top: 2px; }
+      .switch.switch--checked .switch__slider .switch__slider__icon svg {
+        fill: #fff; }
+  .switch__slider {
+    background-color: rgba(40, 128, 163, 0.2);
+    width: 60px;
+    height: 30px;
+    cursor: pointer;
+    transition: 0.4s;
+    border-radius: 34px;
+    position: relative; }
+    .switch__slider:focus, .switch__slider:hover {
+      outline: 0; }
+    .switch__slider::before {
+      background-color: #fff;
+      content: '';
+      transition: 0.4s;
+      height: 22px;
+      width: 22px;
+      left: 6px;
+      bottom: 4px;
+      border-radius: 50%;
+      position: absolute;
+      display: block; }
+    .switch__slider__icon.isvg {
+      display: none; }

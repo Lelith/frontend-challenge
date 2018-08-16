@@ -1,0 +1,57 @@
+@import '../../style/variables.scss';
+
+.switch {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+
+  &.switch--checked .switch__slider {
+    background-color: map-get($colors, brand);
+
+    &::before {
+      transform: translateX(26px);
+    }
+
+    .switch__slider__icon {
+      display: block;
+      margin-left: 8px;
+      margin-top: 2px;
+
+      svg {
+        fill: map-get($colors, light);
+      }
+    }
+  }
+
+  &__slider {
+    background-color: map-get($colors, bgLight);
+    width: 60px;
+    height: 30px;
+    cursor: pointer;
+    transition: 0.4s;
+    border-radius: 34px;
+    position: relative;
+
+    &:focus,
+    &:hover {
+      outline: 0;
+    }
+
+    &::before {
+      background-color: map-get($colors, light);
+      content: '';
+      transition: 0.4s;
+      height: 22px;
+      width: 22px;
+      left: 6px;
+      bottom: 4px;
+      border-radius: 50%;
+      position: absolute;
+      display: block;
+    }
+
+    &__icon.isvg {
+      display: none;
+    }
+  }
+}

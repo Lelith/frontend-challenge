@@ -2,7 +2,14 @@ $colors: (
   brand: #2880a3,
   bgGrey: #eee,
   bgLight: rgba(40, 128, 163, 0.2),
-  bgWhite: #fff,
+  light: #fff,
   border: #cdcccc,
   text: #333,
+);
+
+$fontsizes: (
+  small: 10px,
+  default: 14px,
+  medium: 16px,
+  headline: 24px,
 );

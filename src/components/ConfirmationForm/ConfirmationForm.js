@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
+import PhoneInput from 'react-phone-number-input';
+
 import DatePicker from '../DatePicker/DatePicker';
+import { Button, Switch } from '../FormElements';
+import IconLeft from '../../img/icon_arrow_left.svg';
+import 'react-phone-number-input/style.css';
 
 class ConfirmationForm extends Component {
   constructor(props) {
@@ -18,6 +23,8 @@ class ConfirmationForm extends Component {
     this.handleCheckbox = this.handleCheckbox.bind(this);
     this.sendForm = this.sendForm.bind(this);
     this.chooseTime = this.chooseTime.bind(this);
+    this.readFormValue = this.readFormValue.bind(this);
+    this.readPhone = this.readPhone.bind(this);
   }
 
   validateForm() {
@@ -55,6 +62,24 @@ class ConfirmationForm extends Component {
     this.validateForm();
   }
 
+  readFormValue(event) {
+    const { target } = event;
+    const { value, name } = target;
+    this.setState({
+      [name]: value,
+    });
+    this.validateForm();
+  }
+
+  // the phone input component only returns the number instead of the whole event
+
+  readPhone(number) {
+    this.setState({
+      phone: number,
+    });
+    this.validateForm();
+  }
+
   sendForm() {
     // send all form fields via post and then redirect to success page
     const { isValid } = this.state;
@@ -76,20 +101,51 @@ class ConfirmationForm extends Component {
   }
 
   render() {
-    const { getCall, isValid, redirect } = this.state;
+    const {
+      getCall,
+      isValid,
+      redirect,
+      phone,
+    } = this.state;
+
     if (redirect) {
       return <Redirect to="/success" />;
     }
 
     return (
-      <form className="confirmationForm">
+      <form className="confirmationForm form">
         <fieldset>
-          Would you like to receive a call? <input type="checkbox" onChange={this.handleCheckbox} />
-
+          <div className="form__actions">
+            <span className="form__label">Would you like to shedule a call with your Stylist before they pack your box?</span>
+            <Switch onChange={this.handleCheckbox} />
+          </div>
           {getCall && (
+          <fieldset>
+            <PhoneInput
+              country="DE"
+              name="phone"
+              placeholder="Enter phone number"
+              value={phone}
+              onChange={this.readPhone}
+              className="form__element"
+            />
             <DatePicker chooseTime={this.chooseTime} />
+          </fieldset>
           )}
-          <button className="button primary" onClick={this.sendForm} type="button" disabled={!isValid}>Confirm</button>
+          <div className="form__actions">
+            <Button
+              as="a"
+              href="/"
+              kind="icon"
+              title="back"
+              icon={IconLeft}
+            />
+            <Button
+              onClick={this.sendForm}
+              disabled={!isValid}
+              label="Confirm"
+            />
+          </div>
         </fieldset>
       </form>
     );
