@@ -1,0 +1,15 @@
+@import '../../style/variables.scss';
+
+.footer {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  border-top: solid 5px map-get($colors, brand);
+
+  &__nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+}

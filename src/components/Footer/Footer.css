@@ -1,0 +1,10 @@
+.footer {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  border-top: solid 5px #2880a3; }
+  .footer__nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 10px; }
