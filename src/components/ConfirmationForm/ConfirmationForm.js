@@ -22,9 +22,10 @@ class ConfirmationForm extends Component {
 
     this.handleCheckbox = this.handleCheckbox.bind(this);
     this.sendForm = this.sendForm.bind(this);
-    this.chooseTime = this.chooseTime.bind(this);
     this.writeFormValue = this.writeFormValue.bind(this);
+    this.chooseTime = this.chooseTime.bind(this);
     this.readPhone = this.readPhone.bind(this);
+    this.readField = this.readField.bind(this);
   }
 
   validateForm() {
@@ -69,6 +70,11 @@ class ConfirmationForm extends Component {
     this.writeFormValue('slot', value[1]);
   }
 
+  readField(event) {
+    const { target } = event;
+    this.writeFormValue(target.name, target.value);
+  }
+
   writeFormValue(name, value) {
     this.setState({
       [name]: value,
@@ -111,39 +117,43 @@ class ConfirmationForm extends Component {
 
     return (
       <form className="confirmationForm form">
-        <fieldset>
-          <div className="form__actions">
-            <span className="form__label">Would you like to shedule a call with your Stylist before they pack your box?</span>
-            <Switch onChange={this.handleCheckbox} />
-          </div>
-          {getCall && (
-          <fieldset>
-            <PhoneInput
-              country="DE"
-              name="phone"
-              placeholder="Enter phone number"
-              value={phone}
-              onChange={this.readPhone}
-              className="form__element"
-            />
-            <DatePicker chooseTime={this.chooseTime} />
-          </fieldset>
-          )}
-          <div className="form__actions">
-            <Button
-              as="a"
-              href="/"
-              kind="icon"
-              title="back"
-              icon={IconLeft}
-            />
-            <Button
-              onClick={this.sendForm}
-              disabled={!isValid}
-              label="Confirm"
-            />
-          </div>
-        </fieldset>
+        <div className="form__actions">
+          <span className="form__label">Would you like to shedule a call with your Stylist before they pack your box?</span>
+          <Switch onChange={this.handleCheckbox} />
+        </div>
+        {getCall && (
+        <div className="form__element">
+          <PhoneInput
+            country="DE"
+            name="phone"
+            placeholder="Enter phone number"
+            value={phone}
+            onChange={this.readPhone}
+            className="form__element"
+          />
+          <DatePicker chooseTime={this.chooseTime} />
+        </div>
+        )}
+        <div className="form__element form__element--highlight">
+          <label>
+            <span className="form__text">Is there anything else you would like to share with your Stylist?</span>
+            <textarea name="orderConfirmationComment" onChange={this.readField} />
+          </label>
+        </div>
+        <div className="form__actions">
+          <Button
+            as="a"
+            href="/"
+            kind="icon"
+            title="back"
+            icon={IconLeft}
+          />
+          <Button
+            onClick={this.sendForm}
+            disabled={!isValid}
+            label="Confirm"
+          />
+        </div>
       </form>
     );
   }
