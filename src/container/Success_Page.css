@@ -1,0 +1,32 @@
+.success__message {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px; }
+
+.success__text {
+  font-family: 'Gotham Bold';
+  font-size: 16px;
+  text-align: center;
+  margin-top: 15px; }
+
+.success__details {
+  border: solid 15px #eee;
+  padding: 10px;
+  width: 300px;
+  margin: 0 auto; }
+  .success__details__header {
+    padding-left: 35px; }
+  .success__details__entry {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start; }
+  .success__details__text {
+    flex-grow: 1; }
+  .success__details .isvg.success__details__icon {
+    margin-top: 20px;
+    flex-grow: 0;
+    width: 25px;
+    margin-right: 10px; }
