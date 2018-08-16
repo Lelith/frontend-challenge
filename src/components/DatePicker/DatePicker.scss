@@ -1,0 +1,58 @@
+ @import '../../style/variables.scss';
+.appointment {
+  margin: 5px;
+
+  &__date {
+    padding: 10px;
+    display: block;
+    cursor: pointer;
+    border: solid 1px map-get($colors, bgLight);
+
+    &:hover {
+      border: solid 1px map-get($colors, brand);
+    }
+  }
+
+  &__availableSlots {
+    list-style-type: none;
+    margin: 0;
+    padding: 10px;
+  }
+
+  &__time {
+    label {
+      padding: 5px;
+      display: flex;
+      flex-direction: row;
+      justify-content: left;
+      &:hover {
+        background-color: map-get($colors, bgLight);
+      }
+    }
+  }
+
+  &--active {
+    border: solid 1px map-get($colors, brand);
+  }
+
+  &--disabled {
+    opacity: 0.5;
+
+    .appointment__date {
+      cursor: not-allowed;
+    }
+  }
+}
+
+.styledRadio {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  border: solid 1px map-get($colors, border);
+  width: 15px;
+  height: 15px;
+
+  &:checked {
+    background-color: map-get($colors, brand);
+  }
+}
